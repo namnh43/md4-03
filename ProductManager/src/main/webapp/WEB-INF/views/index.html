@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <style>
+        table, tr,td,th {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+        table {
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<h1>Danh sách sản phẩm</h1>
+<p th:text="${success}"></p>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="row,iStat : ${list}" th:object="${row}">
+        <td th:text="${iStat.count}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{price}"></td>
+        <td><a th:href="@{/product/{id}/edit(id=*{id})}"/>Edit</td>
+        <td><a th:href="@{/product/{id}/delete(id=*{id})}">Delete</a></td>
+        <td><a th:href="@{/product/{id}/view(id=*{id})}">View</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
